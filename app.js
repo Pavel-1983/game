@@ -1,0 +1,31 @@
+const board = document.querySelector('#board')
+const colors = ['#DC143C','#DB7093','#3CB371','#008B8B','#FF8C00','#000080','#FFFF00','#800000']
+const SQUARES_NUMBER = 600
+for (let i=0; i<SQUARES_NUMBER;i++){
+	const square = document.createElement('div')
+	square.classList.add('square')
+
+square.addEventListener('mouseover',()=>{
+	setColor(square)
+})
+square.addEventListener('mouseleave',()=>{
+	removeColor(square)
+})
+
+	board.append(square)
+}
+
+function setColor(element){
+	const color = getRandomColor()
+	element.style.backgroundColor = color
+	element.style.boxShadow=`0 0 2px ${color},0 0 10px ${color}`
+}
+
+function removeColor(element){
+	element.style.backgroundColor = '#1d1d1d'
+	element.style.boxShadow=`0 0 2px #000`
+}
+function getRandomColor(){
+	const index = Math.floor(Math.random() * colors.length)
+	return colors[index]
+}
